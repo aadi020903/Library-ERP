@@ -1,0 +1,121 @@
+
+    views/admin/book/add.ejs - Add Book:
+
+html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+<body>
+    <h1>Add Book</h1>
+    <form action="/add" method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+
+        <label for="ISBN">ISBN:</label>
+        <input type="text" id="ISBN" name="ISBN" required>
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" required>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required>
+
+        <!-- Add other book fields as needed -->
+
+        <button type="submit">Add Book</button>
+    </form>
+</body>
+</html>
+
+    views/admin/transaction/issue.ejs - Issue Book:
+
+html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Book</title>
+</head>
+<body>
+    <h1>Issue Book</h1>
+    <form action="/admin/transaction/issue" method="post">
+        <label for="user">User:</label>
+        <select id="user" name="user" required>
+            <!-- Populate with users from the database -->
+            <% users.forEach(user => { %>
+                <option value="<%= user._id %>"><%= user.username %></option>
+            <% }); %>
+        </select>
+
+        <label for="book">Book:</label>
+        <select id="book" name="book" required>
+            <!-- Populate with books from the database -->
+            <% books.forEach(book => { %>
+                <option value="<%= book._id %>"><%= book.title %></option>
+            <% }); %>
+        </select>
+
+        <label for="borrowDate">Borrow Date:</label>
+        <input type="date" id="borrowDate" name="borrowDate" required>
+
+        <!-- Add other transaction fields as needed -->
+
+        <button type="submit">Issue Book</button>
+    </form>
+</body>
+</html>
+
+    views/admin/transaction/return.ejs - Return Book:
+
+html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Book</title>
+</head>
+<body>
+    <h1>Return Book</h1>
+    <form action="/admin/transaction/return" method="post">
+        <label for="user">User:</label>
+        <select id="user" name="user" required>
+            <!-- Populate with users who have borrowed books -->
+            <% borrowedUsers.forEach(user => { %>
+                <option value="<%= user._id %>"><%= user.username %></option>
+            <% }); %>
+        </select>
+
+        <label for="book">Book:</label>
+        <select id="book" name="book" required>
+            <!-- Populate with books that are currently borrowed -->
+            <% borrowedBooks.forEach(book => { %>
+                <option value="<%= book._id %>"><%= book.title %></option>
+            <% }); %>
+        </select>
+
+        <label for="returnDate">Return Date:</label>
+        <input type="date" id="returnDate" name="returnDate" required>
+
+        <!-- Add other transaction fields as needed -->
+
+        <button type="submit">Return Book</button>
+    </form>
+</body>
+</html>
+
+Note: The code assumes you have routes and controllers set up to handle these actions. The form fields and actions need to match the routes you define in your Express application. Make sure to adapt these templates based on the actual structure of your application.
+ChatGPT can make mistakes. Consider checking important information.
+
+ChatGPT

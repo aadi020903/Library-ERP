@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta2/css/bootstrap.min.css" integrity="sha512-aqT9YD5gLuLBr6ipQAS+72o5yHKzgZbGxEh6iY8lW/r6gG14e2kBTAJb8XrxzZrMOgSmDqtLaF76T0Z6YY2IHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <script>
+        function validateISBNNumber() {
+            const ISBN_Number = document.getElementById('isbn').value;
+            if (ISBN_Number.length !== 13) {
+                alert('ISBN number must be 13 digits long.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <%-include('./header.ejs')-%>  
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mx-auto mt-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary">
+                    <h3 class="text-light">BookRegistration</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form  onsubmit="return validateISBNNumber()" action="add_books" method="post">
+                    <input type="number" name="primarykey" class="form-control" placeholder="Primary Key" value="<%= NewprimaryKey %>" >
+                    <input type="number" name="ISBN" class="form-control" placeholder="ISBN number" id="isbn">
+                   <input type="text" name="booktitle" class="form-control" placeholder="Book Title">
+                    <input type="text" name="authorname" class="form-control" placeholder="Author Name">
+                    <input type="text" name="genre" class="form-control" placeholder="Genre">
+                    <input type="text" name="publishedyear" class="form-control" placeholder="Published Year">
+                    <input type="text" name="totalcopies" class="form-control" placeholder="Total Copies">
+                    <input type="text" name="availablecopies" class="form-control" placeholder="Availble Copies">
+                       
+                    
+                    <button type="submit" class="btnRegister btn-primary btn-lg">Register Book</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta2/js/bootstrap.bundle.min.js" integrity="sha512-43iShtbiyImxjjU4a9rhXBy7eKtIsrpll8xKhe1ghKqh5NyfME8phZs5JRFZpRBe1si44WM3tNmnqMym7JRmDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+</html>
